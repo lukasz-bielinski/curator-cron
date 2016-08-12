@@ -11,7 +11,7 @@ RUN apt-get update && \
   apt-get clean -y && \
 rm -rf /var/lib/apt/lists/*
 
-RUN pip install elasticsearch-curator==$CURATOR_VERSION=3.4
+RUN pip install elasticsearch-curator==$CURATOR_VERSION
 
 
 
