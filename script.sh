@@ -1,3 +1,4 @@
+echo ""
 echo "Elasticsearch host: $ELASTICSEARCH_HOST"
 echo ""
 echo "Indices older than $TTL days will be deleted"
