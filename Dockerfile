@@ -1,8 +1,3 @@
-FROM alpine:3.3
-
-# ... do your other task related docker setup
-
-
 FROM ubuntu:16.10
 ENV CURATOR_VERSION=3.4
 
