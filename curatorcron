@@ -1,1 +1,1 @@
-0 */5 * * * sh /script.sh
+*/1 * * * * sh /script.sh
