@@ -1,12 +1,14 @@
-FROM ubuntu:16.10
+FROM alpine:3.3
 
 
-RUN apt-get update \
-&& apt-get install --yes --force-yes ca-certificates python-setuptools build-essential python-dev libffi-dev libssl-dev libyaml-dev git \
-# install python deps && easy_install pip \ && pip install PyYAML \ && pip install elasticsearch-curator==3.4  \
-&& apt-get clean -y  && rm -rf /var/lib/apt/lists/*
 
-
+RUN apk add --update \
+    python \
+    python-dev \
+    py-pip \
+    build-base \
+  && pip install virtualenv elasticsearch-curator==3.4 \
+  && rm -rf /var/cache/apk/*
 
 
 COPY curatorcron /var/spool/cron/crontabs/root
