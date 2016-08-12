@@ -1,1 +1,1 @@
-*/5 * * * *1 curator --host elasticsearch --port 9200 delete indices --older-than 7  --time-unit days --timestring '%Y-%m-%d'
+*/5 * * * * curator --host elasticsearch --port 9200 delete indices --older-than 7  --time-unit days --timestring '%Y-%m-%d'
