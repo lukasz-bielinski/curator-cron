@@ -41,7 +41,7 @@ for NODE in $dataPodList
       "persistent" : {
           "indices.store.throttle.max_bytes_per_sec" : "5mb"
       }
-  }'
+  }' | jq .
 
 
 #replica 2
@@ -49,4 +49,4 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
 {
   "template" : "*",
   "settings" : {"number_of_replicas" : 2 }
-} '
+} ' | jq .
