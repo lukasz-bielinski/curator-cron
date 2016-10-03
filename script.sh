@@ -45,7 +45,6 @@ for NODE in $dataPodList
 
 
 #replica 2
-
 curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template' -d '
 {
   "template" : "*",
