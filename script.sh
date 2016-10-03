@@ -39,6 +39,6 @@ for NODE in $dataPodList
   curl -XPUT $ELASTICSEARCH_HOST:9200/_cluster/settings -d '
   {
       "persistent" : {
-          "indices.store.throttle.max_bytes_per_sec" : "25mb"
+          "indices.store.throttle.max_bytes_per_sec" : "5mb"
       }
   }'
