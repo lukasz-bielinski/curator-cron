@@ -31,7 +31,7 @@ for NODE in $dataPodList
                  }
                }
            ]
-         }'
+         }' | jq .
        done
   done
 
