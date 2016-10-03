@@ -34,3 +34,11 @@ for NODE in $dataPodList
          }'
        done
   done
+
+###https://www.elastic.co/guide/en/elasticsearch/guide/current/indexing-performance.html#segments-and-merging
+  curl -XPUT '$ELASTICSEARCH_HOST:9200/_cluster/settings' -d '
+  {
+      "persistent" : {
+          "indices.store.throttle.max_bytes_per_sec" : "25mb"
+      }
+  }'
