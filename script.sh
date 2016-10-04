@@ -3,8 +3,8 @@ echo "Elasticsearch host: $ELASTICSEARCH_HOST"
 echo ""
 echo "Indices older than $TTL days will be deleted"
 echo ""
-curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y-%m-%d'   | jq .
-curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y.%m.%d'   | jq .
+curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y-%m-%d'   | jq . -c
+curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y.%m.%d'   | jq . -c
 
 
 
@@ -31,7 +31,7 @@ for NODE in $dataPodList
                  }
                }
            ]
-         }' | jq .
+         }' | jq . -c
        done
   done
 
@@ -41,7 +41,7 @@ for NODE in $dataPodList
       "persistent" : {
           "indices.store.throttle.max_bytes_per_sec" : "5mb"
       }
-  }' | jq .
+  }' | jq . -c
 
 
 #replica 2
@@ -49,4 +49,4 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
 {
   "template" : "*",
   "settings" : {"number_of_replicas" : 2 }
-} ' | jq .
+} ' | jq . -c 
