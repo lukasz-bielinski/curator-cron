@@ -9,6 +9,7 @@ RUN apk add --update \
     build-base \
     curl \
     jq \
+    bash \
   && pip install --upgrade pip \
   && pip install virtualenv elasticsearch-curator==3.5 \
   && rm -rf /var/cache/apk/*
