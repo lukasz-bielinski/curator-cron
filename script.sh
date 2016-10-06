@@ -10,7 +10,7 @@ curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indic
 
 
 ##rerouting UNASSIGNED shards
-dataPodList=$(curl -XGET http://$ELASTICSEARCH_HOST:9200/_cat/nodes |grep ' d ' | awk '{ $1=$2=$3=$4=$5=$6=$7=""      ;print $0}')
+dataPodList=$(curl -XGET http://$ELASTICSEARCH_HOST:9200/_cat/nodes |grep ' d ' | awk '{print $8}')
 for NODE in $dataPodList
   do
        echo ""
