@@ -16,7 +16,8 @@ for NODE in "${dataPodList[@]}"
        echo ""
        echo "rerouting shards on node $NODE"
        echo ""
-       $NODE=$(echo $NODE | xargs)
+       NODE1=$(echo $NODE | xargs)
+       NODE=$NODE1
        IFS=$'\n'
        for line in $(curl -s $ELASTICSEARCH_HOST:9200/_cat/shards | fgrep UNASSIGNED); do
          INDEX=$(echo $line | (awk '{print $1}'))
