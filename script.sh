@@ -49,8 +49,12 @@ for NODE in "${dataPodList[@]}"
 
 
 #replica 2
+#index.merge.scheduler.max_thread_count" : 1 for spinning disks
 curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
 {
   "template" : "*",
-  "settings" : {"number_of_replicas" : 2 }
+  "settings" : {
+    "number_of_replicas" : 2 ,
+    "index.merge.scheduler.max_thread_count" : 1
+  }
 } ' | jq .
