@@ -55,7 +55,7 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
   "template" : "*",
   "settings" : {
     "number_of_replicas" : 2 ,
-    "number_of_shards": 2,
+    "number_of_shards": 3,
     "index.merge.scheduler.max_thread_count" : 1
   }
 } ' | jq .
