@@ -8,8 +8,8 @@ echo ""
  curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y-%m-%d'   | jq .
  curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y.%m.%d'   | jq .
 
- curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW  --time-unit days --timestring '%Y-%m-%W'   | jq .
- curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit days --timestring '%Y.%m.%W'   | jq .
+ curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit weeks --timestring '%Y-%m-%W'   | jq .
+ curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit weeks --timestring '%Y.%m.%W'   | jq .
 
 
 
