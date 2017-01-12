@@ -62,6 +62,7 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
     "number_of_shards": 5,
     "index.merge.scheduler.max_thread_count" : 1,
     "index.translog.durability": "async",
-    "index.translog.sync_interval": "5s"
+    "index.translog.sync_interval": "15s",
+    "index.refresh_interval": "10s"
   }
 } ' | jq .
