@@ -52,7 +52,6 @@ for NODE in "${dataPodList[@]}"
       }
   }' | jq .
 
-
 #replica 2 shard3 - 3 data nodes
 #index.merge.scheduler.max_thread_count" : 1 for spinning disks
 curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
@@ -61,6 +60,8 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
   "settings" : {
     "number_of_replicas" : 2 ,
     "number_of_shards": 5,
-    "index.merge.scheduler.max_thread_count" : 1
+    "index.merge.scheduler.max_thread_count" : 1,
+    "index.translog.durability": "async",
+    "index.translog.sync_interval": "5s"
   }
 } ' | jq .
