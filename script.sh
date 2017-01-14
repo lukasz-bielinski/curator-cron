@@ -66,3 +66,34 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
     "index.refresh_interval": "10s"
   }
 } ' | jq .
+
+##templates for monitoring/es 5
+curl -XPUT $ELASTICSEARCH_HOST:9200/_template/custom_monitoring-es-2 -d '
+{
+    "template": ".monitoring-es-2-*",
+    "order": 1,
+    "settings": {
+        "number_of_shards": 5,
+        "number_of_replicas": 2
+    }
+}'
+
+curl -XPUT $ELASTICSEARCH_HOST:9200/_template/custom_monitoring-kibana-2 -d '
+{
+    "template": ".monitoring-kibana-2-*",
+    "order": 1,
+    "settings": {
+        "number_of_shards": 5,
+        "number_of_replicas": 2
+    }
+}'
+
+curl -XPUT $ELASTICSEARCH_HOST:9200/_template/custom_monitoring-data-2 -d '
+{
+    "template": ".monitoring-data-2",
+    "order": 1,
+    "settings": {
+        "number_of_shards": 5,
+        "number_of_replicas": 2
+    }
+}'
