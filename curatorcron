@@ -1,1 +1,1 @@
-0 */1 * * * bash /script.sh
+0 23 * * * bash /script.sh
