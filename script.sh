@@ -8,11 +8,12 @@ echo ""
 #need to set curator to delete indexes  older than 1 week
  curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y-%m-%d'   | jq .
  # curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y.%m.%d'   | jq .
+sleep 30
 
  # curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit weeks --timestring '%Y-%m-%W'   | jq .
  curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit weeks --timestring '%Y.%W'   | jq .
 
-
+slee 30
 
 ##rerouting UNASSIGNED shards
 IFS=$'\n'
@@ -52,7 +53,7 @@ for NODE in "${dataPodList[@]}"
       }
   }' | jq .
 
-#replica 2 shard5 
+#replica 2 shard5
 #index.merge.scheduler.max_thread_count" : 1 for spinning disks
 curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
 {
