@@ -13,7 +13,18 @@ sleep 30
  # curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit weeks --timestring '%Y-%m-%W'   | jq .
  curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit weeks --timestring '%Y.%W'   | jq .
 
-slee 30
+sleep 30
+
+# ####moving indexes to warm nodes
+# ##daily indices
+# curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 allocation --rule box_type=warm indices --time-unit days --older-than 7 --timestring '%Y-%m-%d' | jq .
+# ##weekly indices
+# curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 allocation --rule box_type=warm indices --time-unit weeks --older-than 1 --timestring  '%Y.%W' | jq .
+# ##optimize warm indices
+# ##daily
+# curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 optimize indices --older-than 14  --time-unit days  --timestring '%Y-%m-%d' | jq .
+# ##weekly
+# curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 optimize indices --older-than 3  --time-unit weeks  --timestring '%Y.%W' | jq .
 
 ##rerouting UNASSIGNED shards
 IFS=$'\n'
