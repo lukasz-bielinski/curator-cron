@@ -15,18 +15,18 @@ sleep 30
 
 sleep 30
 
-# ####moving indexes to warm nodes
-# ##daily indices
-# curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 allocation --rule box_type=warm indices --time-unit days --older-than 7 --timestring '%Y-%m-%d' | jq .
-# ##weekly indices
-# curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 allocation --rule box_type=warm indices --time-unit weeks --older-than 1 --timestring  '%Y.%W' | jq .
-# ##optimize warm indices
-# ##daily
-# curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 optimize indices --older-than 14  --time-unit days  --timestring '%Y-%m-%d' | jq .
-# ##weekly
-# curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 optimize indices --older-than 3  --time-unit weeks  --timestring '%Y.%W' | jq .
+####moving indexes to warm nodes
+##daily indices
+curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 allocation --rule box_type=warm indices --time-unit days --older-than 7 --timestring '%Y-%m-%d' | jq .
+##weekly indices
+curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 allocation --rule box_type=warm indices --time-unit weeks --older-than 1 --timestring  '%Y.%W' | jq .
+##optimize warm indices
+##daily
+curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 optimize indices --older-than 14  --time-unit days  --timestring '%Y-%m-%d' | jq .
+##weekly
+curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 optimize indices --older-than 3  --time-unit weeks  --timestring '%Y.%W' | jq .
 #index template
-##    "index.routing.allocation.require.box_type": "hot"
+#    "index.routing.allocation.require.box_type": "hot"
 
 
 
@@ -80,6 +80,7 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
     "index.translog.durability": "async",
     "index.translog.sync_interval": "15s",
     "index.refresh_interval": "10s"
+    "index.routing.allocation.require.box_type": "hot"
   }
 } ' | jq .
 
