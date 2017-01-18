@@ -25,6 +25,10 @@ sleep 30
 # curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 optimize indices --older-than 14  --time-unit days  --timestring '%Y-%m-%d' | jq .
 # ##weekly
 # curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 optimize indices --older-than 3  --time-unit weeks  --timestring '%Y.%W' | jq .
+#index template
+##    "index.routing.allocation.require.box_type": "hot"
+
+
 
 ##rerouting UNASSIGNED shards
 IFS=$'\n'
