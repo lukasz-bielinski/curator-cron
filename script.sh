@@ -61,12 +61,15 @@ for NODE in "${dataPodList[@]}"
   done
 
 ###https://www.elastic.co/guide/en/elasticsearch/guide/current/indexing-performance.html#segments-and-merging
-  curl -XPUT $ELASTICSEARCH_HOST:9200/_cluster/settings -d '
-  {
-      "persistent" : {
-          "indices.store.throttle.max_bytes_per_sec" : "50mb"
-      }
-  }' | jq .
+curl -XPUT $ELASTICSEARCH_HOST:9200/_cluster/settings -d '
+{
+    "persistent" : {
+        "indices.store.throttle.max_bytes_per_sec" : "50mb",
+        "cluster.routing.allocation.disk.watermark.low": "25gb",
+        "cluster.routing.allocation.disk.watermark.high": "10gb",
+        "cluster.info.update.interval": "1m"
+    }
+}' | jq .
 
 #replica 2 shard5
 #index.merge.scheduler.max_thread_count" : 1 for spinning disks
