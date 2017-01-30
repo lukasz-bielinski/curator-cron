@@ -65,8 +65,8 @@ for NODE in "${dataPodList[@]}"
   {
       "persistent" : {
           "indices.store.throttle.max_bytes_per_sec" : "50mb",
-          "cluster.routing.allocation.disk.watermark.low": "15gb",
-          "cluster.routing.allocation.disk.watermark.high": "5gb",
+          "cluster.routing.allocation.disk.watermark.low": "25gb",
+          "cluster.routing.allocation.disk.watermark.high": "10gb",
           "cluster.info.update.interval": "1m"
       }
   }' | jq .
