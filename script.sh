@@ -85,7 +85,8 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
     "index.translog.durability": "async",
     "index.translog.sync_interval": "15s",
     "index.translog.flush_threshold_ops": "50000",
-    "index.refresh_interval": "20s"
+    "index.refresh_interval": "20s",
+    "index.store.type": "mmapfs"
   }
 } ' | jq .
 
