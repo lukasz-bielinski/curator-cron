@@ -6,12 +6,12 @@ echo ""
 echo "Indices older than $TTLW weeks will be deleted"
 echo ""
 #need to set curator to delete indexes  older than 1 week
- curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y-%m-%d'   | jq .
+ curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y-%m-%d' --exclude '^.*marvel.*$'  | jq .
  # curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTL  --time-unit days --timestring '%Y.%m.%d'   | jq .
 sleep 30
 
  # curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit weeks --timestring '%Y-%m-%W'   | jq .
- curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit weeks --timestring '%Y.%W'   | jq .
+ curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 delete indices --older-than $TTLW --time-unit weeks --timestring '%Y.%W' --exclude '^.*marvel.*$'  | jq .
 
 sleep 30
 
