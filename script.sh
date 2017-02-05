@@ -65,7 +65,7 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_cluster/settings -d '
 {
     "persistent" : {
         "indices.store.throttle.max_bytes_per_sec" : "50mb",
-        "indices.memory.index_buffer_size": "50%",
+        "indices.memory.index_buffer_size": "80%",
         "cluster.routing.allocation.disk.watermark.low": "25gb",
         "cluster.routing.allocation.disk.watermark.high": "10gb",
         "cluster.info.update.interval": "2m",
