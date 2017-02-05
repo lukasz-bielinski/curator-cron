@@ -65,9 +65,10 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_cluster/settings -d '
 {
     "persistent" : {
         "indices.store.throttle.max_bytes_per_sec" : "50mb",
+        "indices.memory.index_buffer_size": "50%",
         "cluster.routing.allocation.disk.watermark.low": "25gb",
         "cluster.routing.allocation.disk.watermark.high": "10gb",
-        "cluster.info.update.interval": "1m"
+        "cluster.info.update.interval": "2m"
     }
 }' | jq .
 
@@ -82,6 +83,7 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_template/index_template -d '
     "index.merge.scheduler.max_thread_count" : 1,
     "index.translog.durability": "async",
     "index.translog.sync_interval": "15s",
+    "index.translog.flush_threshold_ops": "50000",
     "index.refresh_interval": "10s"
   }
 } ' | jq .
