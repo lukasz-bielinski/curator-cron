@@ -68,7 +68,8 @@ curl -XPUT $ELASTICSEARCH_HOST:9200/_cluster/settings -d '
         "indices.memory.index_buffer_size": "50%",
         "cluster.routing.allocation.disk.watermark.low": "25gb",
         "cluster.routing.allocation.disk.watermark.high": "10gb",
-        "cluster.info.update.interval": "2m"
+        "cluster.info.update.interval": "2m",
+        "threadpool.bulk.queue_size": "3000"
     }
 }' | jq .
 
