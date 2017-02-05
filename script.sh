@@ -15,7 +15,7 @@ sleep 30
 
 sleep 30
 
-# ####moving indexes to warm nodes
+# ###moving indexes to warm nodes
 # ##daily indices
 # curator --logformat logstash --host $ELASTICSEARCH_HOST --port 9200 allocation --rule box_type=warm indices --time-unit days --older-than 7 --timestring '%Y-%m-%d' | jq .
 # ##weekly indices
